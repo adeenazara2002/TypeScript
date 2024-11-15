@@ -42,3 +42,13 @@ type User ={
   city: string;
   country: string;
 }
+
+const user: User = {
+name: "Adina Zara",
+email: "adinazara@gmail.com",
+password: "adi123",
+age: 23,
+gender: "Female",
+city: "Karachi",
+country: "Pakistan"
+}

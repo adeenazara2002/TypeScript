@@ -7,7 +7,6 @@
 // {name:”pen”,price:”100”, quantity:”2”}];
 // Calculate total price of each item and all items;
 
-
 // let itemsArray = [
 //   { name: "Juice", price: 50, quantity: 3 },
 //   { name: "cookie", price: 30, quantity: 9 },
@@ -33,7 +32,7 @@
 // Check if age and country properties exist in object or not.
 // Also check firstName and lastName properties in object.
 
-type User ={
+type User = {
   name: string;
   email: string;
   password: string;
@@ -41,14 +40,23 @@ type User ={
   gender: string;
   city: string;
   country: string;
-}
+};
 
 const user: User = {
-name: "Adina Zara",
-email: "adinazara@gmail.com",
-password: "adi123",
-age: 23,
-gender: "Female",
-city: "Karachi",
-country: "Pakistan"
+  name: "Adina Zara",
+  email: "adinazara@gmail.com",
+  password: "adi123",
+  age: 23,
+  gender: "Female",
+  city: "Karachi",
+  country: "Pakistan",
+};
+
+function hasProperty<T>(obj: T, property: string): boolean {
+  return Object.prototype.hasOwnProperty.call(obj, property);
 }
+
+console.log("Does 'age' property exist?", hasProperty(user, "age"));
+console.log("Does 'country' property exist?", hasProperty(user, "country"));
+console.log("Does 'firstName' property exist?", hasProperty(user, "firstName"));
+console.log("Does 'lastName' property exist?", hasProperty(user, "lastName"));

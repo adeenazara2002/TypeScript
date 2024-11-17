@@ -66,30 +66,107 @@
 // 3. Create a constructor function with some properties. Now
 // create multiple records using the constructor.
 
-class User{
-  name: string;
-  email: string;
-  age: number;
-  gender: string;
-  city: string;
-  country: string;
+// class User {
+//   name: string;
+//   email: string;
+//   age: number;
+//   gender: string;
+//   city: string;
+//   country: string;
 
-  constructor(name: string, email: string, age: number, gender: string, city: string, country: string){
+//   constructor(
+//     name: string,
+//     email: string,
+//     age: number,
+//     gender: string,
+//     city: string,
+//     country: string
+//   ) {
+//     this.name = name;
+//     this.email = email;
+//     this.age = age;
+//     this.gender = gender;
+//     this.city = city;
+//     this.country = country;
+//   }
+// }
+
+// const user1 = new User(
+//   "Adina Zara",
+//   "adinazara@gmail.com",
+//   22,
+//   "Female",
+//   "Karachi",
+//   "Pakistan"
+// );
+// const user2 = new User(
+//   "Saad Nisar",
+//   "saad@gmail.com",
+//   22,
+//   "Male",
+//   "Karachi",
+//   "Pakistan"
+// );
+// const user3 = new User(
+//   "Usman",
+//   "usman@gmail.com",
+//   22,
+//   "Male",
+//   "Karachi",
+//   "Pakistan"
+// );
+
+// console.log(user1);
+// console.log(user2);
+// console.log(user3);
+
+// 4. Suppose you want to check population of your area, their
+// educations and professions.
+// Create a constructor function which holds following
+// properties:
+// Name, gender, address, education, profession,
+// Enter all records one by one.
+// Hint:
+
+//  use select box for education and profession,
+//  use radio box for gender
+
+// Bonus : use can use localStorage to save records.
+
+class Person {
+  name: string;
+  gender: string;
+  address: string;
+  education: string;
+  profession: string;
+
+  constructor(name: string, gender: string, address: string, education: string, profession: string){
     this.name = name;
-    this.email = email;
-    this.age = age;
     this.gender = gender;
-    this.city = city;
-    this.country = country;
-  } 
+    this.address = address;
+    this.education = education;
+    this.profession = profession;
+  }
 }
 
-const user1 = new User("Adina Zara" , "adinazara@gmail.com" , 22, "Female" , "Karachi" , "Pakistan");
-const user2 = new User("Saad Nisar" , "saad@gmail.com" , 22, "Male" , "Karachi" , "Pakistan");
-const user3 = new User("Usman" , "usman@gmail.com" , 22, "Male" , "Karachi" , "Pakistan");
+function saveToLocalStorage(person: Person): void {
+  let people: Person[] = JSON.parse(localStorage.getItem('people') || '[]');
+  people.push(person);
+  localStorage.setItem('people', JSON.stringify(people)); 
+}
 
-console.log(user1);
-console.log(user2);
-console.log(user3);
+function handleFormSubmit(event: Event): void {
+  event.preventDefault();
+  
+  const name = (document.getElementById('name') as HTMLInputElement).value;
+  const gender = (document.querySelector('input[name="gender"]:checked') as HTMLInputElement)?.value;
+  const address= (document.getElementById('address') as HTMLInputElement).value;
+  const education = (document.getElementById('eduaction') as HTMLInputElement).value;
+  const profession = (document.getElementById('profession') as HTMLInputElement).value;
 
+  const person  = new Person(name, gender, address, education, profession);
+  saveToLocalStorage(person);
 
+  (document.getElementById('personForm') as HTMLFormElement)?.reset();
+  alert('Record saved successfully'); 
+}

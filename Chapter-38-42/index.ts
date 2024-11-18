@@ -45,22 +45,22 @@
 // where, S = ( a + b + c ) / 2
 // Calculate area of triangle using 2 functions
 
-function calSemiPerimeter(a: number, b: number, c: number): number {
-  return (a + b + c) / 2;
-}
+// function calSemiPerimeter(a: number, b: number, c: number): number {
+//   return (a + b + c) / 2;
+// }
 
-function calArea(a: number, b: number, c: number): number {
-  const s = calSemiPerimeter(a, b, c);
-  const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-  return area;
-}
+// function calArea(a: number, b: number, c: number): number {
+//   const s = calSemiPerimeter(a, b, c);
+//   const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+//   return area;
+// }
 
-const a = 5;
-const b = 6;
-const c = 7;
+// const a = 5;
+// const b = 6;
+// const c = 7;
 
-const area = calArea(a, b, c);
-console.log(`The area of the triangle is: ${area.toFixed(2)} square units.`);
+// const area = calArea(a, b, c);
+// console.log(`The area of the triangle is: ${area.toFixed(2)} square units.`);
 
 // 4. Write a function that receives marks received by a student in 3
 // subjects and returns the average and percentage of these
@@ -68,31 +68,51 @@ console.log(`The area of the triangle is: ${area.toFixed(2)} square units.`);
 // and other are for average and percentage. Call those functions
 // from mainFunction and display result in mainFunction.
 
-function calAverage(marks1: number, marks2: number, marks3: number): number {
-  return (marks1 + marks2 + marks3) / 3;
+// function calAverage(marks1: number, marks2: number, marks3: number): number {
+//   return (marks1 + marks2 + marks3) / 3;
+// }
+
+// function calPercentage(
+//   marks1: number,
+//   marks2: number,
+//   marks3: number,
+//   totalMarks: number
+// ): number {
+//   const totalObtained = marks1 + marks2 + marks3;
+//   return (totalObtained / totalMarks) * 100;
+// }
+
+// function mainFunction(marks1: number, marks2: number, marks3: number): void {
+//   const totalMarks = 300;
+//   const average = calAverage(marks1, marks2, marks3);
+//   const percentage = calPercentage(marks1, marks2, marks3, totalMarks);
+
+//   console.log(`Average: ${average.toFixed(2)}`);
+//   console.log(`Percentage: ${percentage.toFixed(2)}%`);
+// }
+
+// const marks1 = 80;
+// const marks2 = 90;
+// const marks3 = 45;
+
+// mainFunction(marks1, marks2, marks3);
+
+// 5. You have learned the function indexOf. Code your own custom
+// function that will perform the same functionality. You can code
+// for single character as of now.
+
+function myIndexOf(str: string, char: string): number {
+    for(let i =0; i< str.length; i++){
+        if (str[i] === char) {
+            return i;
+        }
+    }
+    return -1;
 }
 
-function calPercentage(
-  marks1: number,
-  marks2: number,
-  marks3: number,
-  totalMarks: number
-): number {
-  const totalObtained = marks1 + marks2 + marks3;
-  return (totalObtained / totalMarks) * 100;
-}
+const inputString = "Hello World";
+const searchChar = "o";
 
-function mainFunction(marks1: number, marks2: number, marks3: number): void {
-  const totalMarks = 300;
-  const average = calAverage(marks1, marks2, marks3);
-  const percentage = calPercentage(marks1, marks2, marks3, totalMarks);
+const index = myIndexOf(inputString, searchChar);
+console.log(`The character '${searchChar}' is found at index: ${index}`);
 
-  console.log(`Average: ${average.toFixed(2)}`);
-  console.log(`Percentage: ${percentage.toFixed(2)}%`);
-}
-
-const marks1 = 80;
-const marks2 = 90;
-const marks3 = 45;
-
-mainFunction(marks1, marks2, marks3);

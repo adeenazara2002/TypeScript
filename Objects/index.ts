@@ -140,7 +140,7 @@ class Person {
   education: string;
   profession: string;
 
-  constructor(name: string, gender: string, address: string, education: string, profession: string){
+  constructor(name: string, gender: string, address: string, education: string, profession: string) {
     this.name = name;
     this.gender = gender;
     this.address = address;
@@ -157,16 +157,22 @@ function saveToLocalStorage(person: Person): void {
 
 function handleFormSubmit(event: Event): void {
   event.preventDefault();
-  
+
   const name = (document.getElementById('name') as HTMLInputElement).value;
   const gender = (document.querySelector('input[name="gender"]:checked') as HTMLInputElement)?.value;
-  const address= (document.getElementById('address') as HTMLInputElement).value;
-  const education = (document.getElementById('eduaction') as HTMLInputElement).value;
-  const profession = (document.getElementById('profession') as HTMLInputElement).value;
+  const address = (document.getElementById('address') as HTMLInputElement).value;
+  const education = (document.getElementById('education') as HTMLSelectElement).value;
+  const profession = (document.getElementById('profession') as HTMLSelectElement).value;
 
-  const person  = new Person(name, gender, address, education, profession);
+  if (!name || !gender || !address || !education || !profession) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const person = new Person(name, gender, address, education, profession);
   saveToLocalStorage(person);
 
+  // Reset the form
   (document.getElementById('personForm') as HTMLFormElement)?.reset();
-  alert('Record saved successfully'); 
+  alert('Record saved successfully!'); 
 }

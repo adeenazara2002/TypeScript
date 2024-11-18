@@ -53,20 +53,91 @@
 // QUESTION 3
 // 3. Create a constructor function with some properties. Now
 // create multiple records using the constructor.
-var User = /** @class */ (function () {
-    function User(name, email, age, gender, city, country) {
+// class User {
+//   name: string;
+//   email: string;
+//   age: number;
+//   gender: string;
+//   city: string;
+//   country: string;
+//   constructor(
+//     name: string,
+//     email: string,
+//     age: number,
+//     gender: string,
+//     city: string,
+//     country: string
+//   ) {
+//     this.name = name;
+//     this.email = email;
+//     this.age = age;
+//     this.gender = gender;
+//     this.city = city;
+//     this.country = country;
+//   }
+// }
+// const user1 = new User(
+//   "Adina Zara",
+//   "adinazara@gmail.com",
+//   22,
+//   "Female",
+//   "Karachi",
+//   "Pakistan"
+// );
+// const user2 = new User(
+//   "Saad Nisar",
+//   "saad@gmail.com",
+//   22,
+//   "Male",
+//   "Karachi",
+//   "Pakistan"
+// );
+// const user3 = new User(
+//   "Usman",
+//   "usman@gmail.com",
+//   22,
+//   "Male",
+//   "Karachi",
+//   "Pakistan"
+// );
+// console.log(user1);
+// console.log(user2);
+// console.log(user3);
+// 4. Suppose you want to check population of your area, their
+// educations and professions.
+// Create a constructor function which holds following
+// properties:
+// Name, gender, address, education, profession,
+// Enter all records one by one.
+// Hint:
+//  use select box for education and profession,
+//  use radio box for gender
+// Bonus : use can use localStorage to save records.
+var Person = /** @class */ (function () {
+    function Person(name, gender, address, education, profession) {
         this.name = name;
-        this.email = email;
-        this.age = age;
         this.gender = gender;
-        this.city = city;
-        this.country = country;
+        this.address = address;
+        this.education = education;
+        this.profession = profession;
     }
-    return User;
+    return Person;
 }());
-var user1 = new User("Adina Zara", "adinazara@gmail.com", 22, "Female", "Karachi", "Pakistan");
-var user2 = new User("Saad Nisar", "saad@gmail.com", 22, "Male", "Karachi", "Pakistan");
-var user3 = new User("Usman", "usman@gmail.com", 22, "Male", "Karachi", "Pakistan");
-console.log(user1);
-console.log(user2);
-console.log(user3);
+function saveToLocalStorage(person) {
+    var people = JSON.parse(localStorage.getItem('people') || '[]');
+    people.push(person);
+    localStorage.setItem('people', JSON.stringify(people));
+}
+function handleFormSubmit(event) {
+    var _a, _b;
+    event.preventDefault();
+    var name = document.getElementById('name').value;
+    var gender = (_a = document.querySelector('input[name="gender"]:checked')) === null || _a === void 0 ? void 0 : _a.value;
+    var address = document.getElementById('address').value;
+    var education = document.getElementById('eduaction').value;
+    var profession = document.getElementById('profession').value;
+    var person = new Person(name, gender, address, education, profession);
+    saveToLocalStorage(person);
+    (_b = document.getElementById('personForm')) === null || _b === void 0 ? void 0 : _b.reset();
+    alert('Record saved successfully');
+}

@@ -19,16 +19,56 @@
 // A year is a leap year if:
 // - It is divisible by 4
 // - It is not divisible by 100, unless it is also divisible by 400
-function isLeapYear(year) {
-    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
-        return true;
-    }
-    return false;
+// function isLeapYear(year: number):  boolean {
+//     if ((year % 4 === 0 && year % 100 !==0) || (year % 400 === 0)) {
+//         return true;
+//     }
+//   return false;
+// }
+// const year =2021;
+// if (isLeapYear(year)) {
+//     console.log(`${year} is a leap year`);
+// }else{
+//     console.log(`${year} is not a leap year`);
+// }
+// 3. If the lengths of the sides of a triangle are denoted by a, b, and
+// c, then area of triangle is given by
+// area = S(S − a)(S − b)(S − c)
+// where, S = ( a + b + c ) / 2
+// Calculate area of triangle using 2 functions
+function calSemiPerimeter(a, b, c) {
+    return (a + b + c) / 2;
 }
-var year = 2021;
-if (isLeapYear(year)) {
-    console.log("".concat(year, " is a leap year"));
+function calArea(a, b, c) {
+    var s = calSemiPerimeter(a, b, c);
+    var area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    return area;
 }
-else {
-    console.log("".concat(year, " is not a leap year"));
+var a = 5;
+var b = 6;
+var c = 7;
+var area = calArea(a, b, c);
+console.log("The area of the triangle is: ".concat(area.toFixed(2), " square units."));
+// 4. Write a function that receives marks received by a student in 3
+// subjects and returns the average and percentage of these
+// marks. there should be 3 functions one is the mainFunction
+// and other are for average and percentage. Call those functions
+// from mainFunction and display result in mainFunction.
+function calAverage(marks1, marks2, marks3) {
+    return (marks1 + marks2 + marks3) / 3;
 }
+function calPercentage(marks1, marks2, marks3, totalMarks) {
+    var totalObtained = marks1 + marks2 + marks3;
+    return (totalObtained / totalMarks) * 100;
+}
+function mainFunction(marks1, marks2, marks3) {
+    var totalMarks = 300;
+    var average = calAverage(marks1, marks2, marks3);
+    var percentage = calPercentage(marks1, marks2, marks3, totalMarks);
+    console.log("Average: ".concat(average.toFixed(2)));
+    console.log("Percentage: ".concat(percentage.toFixed(2), "%"));
+}
+var marks1 = 80;
+var marks2 = 90;
+var marks3 = 45;
+mainFunction(marks1, marks2, marks3);
